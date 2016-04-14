@@ -14,12 +14,16 @@
     <script src="/js/default.js"></script>
 </head>
 <body class="win-type-body">
+    <!--
+        TODO:   
+                Fazer uma barra lateral scrollable que vá buscar os pptx todos de uma pasta Office 365
+                Fazer uma zona da direita com um iframe que ocupe a zona toda menos um espacinho por baixo para:
+                    - Botão de tweetar sobre o ISV
+                    - Botão para enviar info sobre o ISB por email com uma caixa com o email destino
+    -->
+    
 
 
-    <p>Content goes here</p>
-
-    <iframe src='https://microsoft-my.sharepoint.com/personal/joalmeid_microsoft_com/_layouts/15/WopiFrame.aspx?sourcedoc={38a3035b-aa92-4266-819d-246c5fa79bfb}&action=embedview&wdAr=1.7777777777777776' width='350px' height='221px' frameborder='0'>
-        Este é um documento incorporado do <a target='_blank' href='http://office.com'>Microsoft Office</a>, com tecnologia <a target='_blank' href='http://office.com/webapps'>Office Online</a>.
-    </iframe>
+    <x-ms-webview src='https://www.bing.com' onload="this.width=screen.width;this.height=screen.height;" width="100%" height="100%" frameborder='0'></x-ms-webview>
 </body>
 </html>

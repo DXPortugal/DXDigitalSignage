@@ -4,34 +4,34 @@
     const URI = Windows.Foundation.Uri;
 
     // Listen for the navigation start
-    this.webview.addEventListener("MSWebViewNavigationStarting", e => {
-        this.loading = true;
+    /* this.webview.addEventListener("MSWebViewNavigationStarting", e => {
+    this.loading = true;
 
-        // Check Browser URL
-        //if (e.uri != '')
+    // Check Browser URL
+    //if (e.uri != '')
 
-        // Update the address bar
-        //this.currentUrl = e.uri;
-        this.currentUrl = "https://dev.windows.com/en-us/microsoft-edge/tools/staticscan/";
-        this.updateAddressBar(this.currentUrl);
+    // Update the address bar
+    //this.currentUrl = e.uri;
+    this.currentUrl = "https://dev.windows.com/en-us/microsoft-edge/tools/staticscan/";
+    this.updateAddressBar(this.currentUrl);
         
-        console.log(`Navigating to ${this.currentUrl}`);
+    console.log(`Navigating to ${this.currentUrl}`);
 
-        this.hideFavicon();
-        this.toggleProgressRing(true);
+    this.hideFavicon();
+    this.toggleProgressRing(true);
 
-        // Show the stop button
-        this.showStop();
+    // Show the stop button
+    this.showStop();
 
-        // Create the C++ Windows Runtime Component
-        let winRTObject = new NativeListener.KeyHandler();
+    // Create the C++ Windows Runtime Component
+    let winRTObject = new NativeListener.KeyHandler();
 
-        // Listen for an app notification from the WinRT object
-        winRTObject.onnotifyappevent = e => this.handleShortcuts(e.target);
+    // Listen for an app notification from the WinRT object
+    winRTObject.onnotifyappevent = e => this.handleShortcuts(e.target);
 
-        // Expose the native WinRT object on the page's global object
-        this.webview.addWebAllowedObject("NotifyApp", winRTObject);
-    });
+    // Expose the native WinRT object on the page's global object
+    this.webview.addWebAllowedObject("NotifyApp", winRTObject);
+});*/ 
 
     // Inject fullscreen mode hot key listener into the WebView with every page load
     //this.webview.addEventListener("MSWebViewDOMContentLoaded", () => {
@@ -47,46 +47,46 @@
     //    asyncOp.start();
     //});
 
-    // Listen for the navigation completion
-    this.webview.addEventListener("MSWebViewNavigationCompleted", e => {
-        this.loading = false;
-        this.toggleProgressRing(false);
-        this.getFavicon(e.uri);
+    //// Listen for the navigation completion
+    //this.webview.addEventListener("MSWebViewNavigationCompleted", e => {
+    //    this.loading = false;
+    //    this.toggleProgressRing(false);
+    //    this.getFavicon(e.uri);
 
-        // Update the page title
-        this.appView.title = this.webview.documentTitle;
+    //    // Update the page title
+    //    this.appView.title = this.webview.documentTitle;
 
-        // Show the refresh button
-        this.showRefresh();
+    //    // Show the refresh button
+    //    this.showRefresh();
 
-        // Update the navigation state
-        this.updateNavState();
-    });
+    //    // Update the navigation state
+    //    this.updateNavState();
+    //});
 
-    // Listen for unviewable content
-    this.webview.addEventListener("MSWebViewUnviewableContentIdentified", e => {
-        console.error(`Unviewable content: ${e.message}`);
-        if (e.mediaType === "application/pdf") {
-            Windows.System.Launcher.launchURIAsync(new URI(e.uri));
-        }
-    });
+    //// Listen for unviewable content
+    //this.webview.addEventListener("MSWebViewUnviewableContentIdentified", e => {
+    //    console.error(`Unviewable content: ${e.message}`);
+    //    if (e.mediaType === "application/pdf") {
+    //        Windows.System.Launcher.launchURIAsync(new URI(e.uri));
+    //    }
+    //});
 
-    // Listen for an unsupported URI scheme
-    this.webview.addEventListener("MSWebViewUnsupportedURISchemeIdentified",
-        e => console.error(`Unsupported URI scheme: ${e.message}`));
+    //// Listen for an unsupported URI scheme
+    //this.webview.addEventListener("MSWebViewUnsupportedURISchemeIdentified",
+    //    e => console.error(`Unsupported URI scheme: ${e.message}`));
 
-    // Listen for a new window
-    this.webview.addEventListener("MSWebViewNewWindowRequested", e => {
-        console.log("New window requested");
-        e.preventDefault();
-        window.open(e.uri);
-    });
+    //// Listen for a new window
+    //this.webview.addEventListener("MSWebViewNewWindowRequested", e => {
+    //    console.log("New window requested");
+    //    e.preventDefault();
+    //    window.open(e.uri);
+    //});
 
-    // Listen for a permission request
-    this.webview.addEventListener("MSWebViewPermissionRequested", e => {
-        console.log("Permission requested");
-        if (e.permissionRequest.type === "geolocation") {
-            e.permissionRequest.allow();
-        }
-    }); 
+    //// Listen for a permission request
+    //this.webview.addEventListener("MSWebViewPermissionRequested", e => {
+    //    console.log("Permission requested");
+    //    if (e.permissionRequest.type === "geolocation") {
+    //        e.permissionRequest.allow();
+    //    }
+    //}); 
  });
